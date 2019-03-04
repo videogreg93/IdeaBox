@@ -3,7 +3,7 @@ package com.gregory.ideabox.system
 
 import com.google.firebase.FirebaseException
 import com.google.firebase.database.*
-import kotlinx.coroutines.experimental.suspendCancellableCoroutine
+import kotlinx.coroutines.suspendCancellableCoroutine
 
 /**
  * Coroutine to read a single value from Firebase Database

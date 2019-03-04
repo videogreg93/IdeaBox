@@ -2,10 +2,10 @@ package com.gregory.ideabox.views.categories
 
 import com.gregory.ideabox.managers.FirebaseManager
 import com.gregory.ideabox.managers.IBManager
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.launch
-import kotlinx.coroutines.experimental.withContext
-import kotlin.coroutines.experimental.CoroutineContext
+import kotlinx.coroutines.android.UI
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlin.coroutines.CoroutineContext
 
 class CategoriesPresenter(override var myView: CategoriesContract.View,
                           val firebaseManager: FirebaseManager = IBManager.firebaseManager) : CategoriesContract.Presenter {

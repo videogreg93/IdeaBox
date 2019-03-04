@@ -1,7 +1,7 @@
 package com.gregory.ideabox.system
 import com.google.android.gms.tasks.Task
-import kotlinx.coroutines.experimental.suspendCancellableCoroutine
-import kotlin.coroutines.experimental.suspendCoroutine
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlin.coroutines.suspendCoroutine
 
 /**
  * Coroutine support to Firebase Task interface
