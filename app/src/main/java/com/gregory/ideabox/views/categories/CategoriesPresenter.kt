@@ -1,14 +1,20 @@
 package com.gregory.ideabox.views.categories
 
+import com.gregory.ideabox.managers.AuthenticationManager
 import com.gregory.ideabox.managers.FirebaseManager
 import com.gregory.ideabox.managers.IBManager
-import kotlinx.coroutines.android.UI
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.android.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlin.coroutines.CoroutineContext
 
-class CategoriesPresenter(override var myView: CategoriesContract.View,
-                          val firebaseManager: FirebaseManager = IBManager.firebaseManager) : CategoriesContract.Presenter {
+class CategoriesPresenter(
+    override var myView: CategoriesContract.View,
+    val authenticationManager: AuthenticationManager = IBManager.authenticationManager,
+    val firebaseManager: FirebaseManager = IBManager.firebaseManager
+) : CategoriesContract.Presenter {
+
     init {
         myView.presenter = this
     }
@@ -16,12 +22,22 @@ class CategoriesPresenter(override var myView: CategoriesContract.View,
     override fun getCategories() {
         //todo implement
         // Get default categories, then custom categories
-        launch {
-            val categories = firebaseManager.getCategories()
-            withContext(UI) {
+        GlobalScope.launch() {
+            val categories = authenticationManager.getCurrentUser().Categories
+            withContext(Dispatchers.Main) {
                 myView.onGetCategories(categories)
             }
+        }
+    }
 
+    override fun getIdeasForCategories(category: String) {
+        GlobalScope.launch {
+            val ideas = firebaseManager.getIdeasForCategory(authenticationManager.myId,category).map {
+                it.second
+            }
+            withContext(Dispatchers.Main) {
+                myView.onGetIdeas(ideas)
+            }
         }
     }
 }

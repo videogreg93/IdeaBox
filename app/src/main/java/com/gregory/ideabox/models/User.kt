@@ -7,7 +7,8 @@ class User(
     var email: String = "",
     var friends: ArrayList<User> = ArrayList(),
     var id: String = "",
-    var Categories: ArrayList<Category> = ArrayList()
+    var Categories: ArrayList<Category> = ArrayList(),
+    var ideas: ArrayList<Idea> = ArrayList()
 ) {
 
     companion object {

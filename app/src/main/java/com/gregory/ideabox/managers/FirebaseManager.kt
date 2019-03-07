@@ -4,6 +4,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import com.gregory.ideabox.models.Category
+import com.gregory.ideabox.models.Idea
 import com.gregory.ideabox.models.User
 import com.gregory.ideabox.system.readList
 import com.gregory.ideabox.system.readValue
@@ -18,7 +19,6 @@ class FirebaseManager() {
     private val categories = ArrayList<Category>()
 
     init {
-
         categories.add(Category("Movies"))
         categories.add(Category("Activities"))
     }
@@ -29,6 +29,7 @@ class FirebaseManager() {
             usersRef.child(user.uid).readValue<User>().second
         } catch (e: Exception) {
             usersRef.child(user.uid).setValue(User.createUser(user, categories))
+            usersRef.child(user.uid).child("Categories").setValue(categories)
         }
     }
 
@@ -38,6 +39,16 @@ class FirebaseManager() {
 
     suspend fun getUser(myId: String): User {
         return usersRef.child(myId).readValue<User>().second
+    }
+
+    suspend fun getIdeasForCategory(id: String, category: String): ArrayList<Pair<String,Idea>> {
+        return usersRef.child(id).child("ideas").orderByChild("category").equalTo(category).readList()
+    }
+
+    suspend fun addIdea(myId: String, idea: Idea) {
+        val ideas = usersRef.child(myId).child("ideas").readList<Idea>() as ArrayList
+        ideas.add(idea)
+        usersRef.child(myId).child("ideas").setValue(ideas)
     }
 
     companion object {

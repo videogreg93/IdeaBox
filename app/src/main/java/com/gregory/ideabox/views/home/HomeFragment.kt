@@ -12,12 +12,9 @@ import com.gregory.ideabox.models.User
 import kotlinx.android.synthetic.main.fragment_home.*
 import android.R
 
-
-
-
 class HomeFragment : Fragment(), HomeContract.View {
-
     override lateinit var presenter: HomeContract.Presenter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,7 +30,7 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     override fun onGetUser(user: User) {
-        title.text = getString(com.gregory.ideabox.R.string.home_title, user.displayName)
-        spinner.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, user.Categories)
+        title?.text = getString(com.gregory.ideabox.R.string.home_title, user.displayName)
+        spinner?.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, user.Categories)
     }
 }
