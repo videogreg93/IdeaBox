@@ -35,7 +35,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         }
     }
 
-    override fun doOnAuthentication(account: FirebaseUser) {
+    override fun doOnAuthentication() {
         val intent = Intent(this@LoginActivity, MainActivity::class.java)
         startActivity(intent)
     }

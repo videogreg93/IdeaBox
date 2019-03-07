@@ -10,7 +10,7 @@
     <TextView
             android:id="@+id/title"
             android:layout_width="0dp"
-           style  ="@style/Title1"
+            style="@style/h1"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"

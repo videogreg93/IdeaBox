@@ -8,18 +8,19 @@ import com.gregory.ideabox.models.User
 import com.gregory.ideabox.system.readList
 import com.gregory.ideabox.system.readValue
 
-class FirebaseManager(authenticationManager: AuthenticationManager) {
+class FirebaseManager() {
     private val db = FirebaseDatabase.getInstance()
     private val usersRef = db.getReference(USERS)
     private val messagesRef = db.getReference(MESSAGES)
     private val categoriesRef = db.getReference(CATEGORIES)
     val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
+    private val categories = ArrayList<Category>()
+
     init {
-        val categories = ArrayList<Category>()
+
         categories.add(Category("Movies"))
         categories.add(Category("Activities"))
-        categoriesRef.setValue(categories)
     }
 
 
@@ -27,12 +28,16 @@ class FirebaseManager(authenticationManager: AuthenticationManager) {
         try {
             usersRef.child(user.uid).readValue<User>().second
         } catch (e: Exception) {
-            usersRef.child(user.uid).setValue(User.createUser(user))
+            usersRef.child(user.uid).setValue(User.createUser(user, categories))
         }
     }
 
     suspend fun getCategories(): ArrayList<Category> {
         return categoriesRef.readList<Category>() as ArrayList<Category>
+    }
+
+    suspend fun getUser(myId: String): User {
+        return usersRef.child(myId).readValue<User>().second
     }
 
     companion object {

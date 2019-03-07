@@ -24,8 +24,12 @@ class LoginPresenter(
     }
 
     override fun getUserSignedIn() {
-        authenticationManager.getCurrentUser()?.let {
-            myView.doOnAuthentication(it)
+        launch {
+            firebaseManager.mAuth.currentUser?.let {user ->
+                authenticationManager.myId = user.uid
+                myView.doOnAuthentication()
+
+            }
         }
     }
 
@@ -52,10 +56,11 @@ class LoginPresenter(
                 .addOnCompleteListener { resultTask ->
                     if (resultTask.isSuccessful) {
                         launch {
-                            val user = authenticationManager.getCurrentUser()!!
+                            val user = firebaseManager.mAuth.currentUser!!
                             // Add user to UserTable if not there
                             firebaseManager.addUser(user)
-                            myView.doOnAuthentication(user)
+                            authenticationManager.myId = user.uid
+                            myView.doOnAuthentication()
                         }
                     } else {
                         // If sign in fails, display a message to the user.

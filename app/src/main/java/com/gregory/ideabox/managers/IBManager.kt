@@ -5,8 +5,8 @@ object IBManager {
     var authenticationManager: AuthenticationManager
 
     init {
-        authenticationManager = AuthenticationManager()
-        firebaseManager = FirebaseManager(authenticationManager)
+        firebaseManager = FirebaseManager()
+        authenticationManager = AuthenticationManager(firebaseManager)
     }
 
 }
