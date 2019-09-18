@@ -4,12 +4,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.gregory.ideabox.managers.AuthenticationManager
 import com.gregory.ideabox.managers.FirebaseManager
 import com.gregory.ideabox.managers.IBManager
-import android.support.v4.app.ActivityCompat.startActivityForResult
+import androidx.core.app.ActivityCompat.startActivityForResult
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.GoogleAuthProvider
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
@@ -24,7 +25,7 @@ class LoginPresenter(
     }
 
     override fun getUserSignedIn() {
-        launch {
+        GlobalScope.launch {
             firebaseManager.mAuth.currentUser?.let {user ->
                 authenticationManager.myId = user.uid
                 myView.doOnAuthentication()
@@ -55,7 +56,7 @@ class LoginPresenter(
             firebaseManager.mAuth.signInWithCredential(credential)
                 .addOnCompleteListener { resultTask ->
                     if (resultTask.isSuccessful) {
-                        launch {
+                        GlobalScope.launch {
                             val user = firebaseManager.mAuth.currentUser!!
                             // Add user to UserTable if not there
                             firebaseManager.addUser(user)

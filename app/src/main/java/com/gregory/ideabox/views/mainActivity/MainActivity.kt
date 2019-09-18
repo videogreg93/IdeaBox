@@ -1,9 +1,9 @@
 package com.gregory.ideabox.views.mainActivity
 
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import com.gregory.ideabox.R
 import com.gregory.ideabox.views.base.ViewUtils
 import com.gregory.ideabox.views.categories.CategoriesFragment

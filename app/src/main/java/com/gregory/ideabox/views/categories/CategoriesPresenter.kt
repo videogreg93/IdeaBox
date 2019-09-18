@@ -5,7 +5,6 @@ import com.gregory.ideabox.managers.FirebaseManager
 import com.gregory.ideabox.managers.IBManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.android.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 

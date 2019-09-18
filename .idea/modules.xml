@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/IdeaBox.iml" filepath="$PROJECT_DIR$/IdeaBox.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/IdeaBox-app.iml" filepath="$PROJECT_DIR$/app/IdeaBox-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StudioProjects-IdeaBox.iml" filepath="$PROJECT_DIR$/StudioProjects-IdeaBox.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

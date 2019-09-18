@@ -68,7 +68,7 @@ private suspend fun <T : Any> readReference(
         }
     }
 
-    continuation.invokeOnCompletion { reference.removeEventListener(listener) }
+//    continuation.invokeOnCompletion { reference.removeEventListener(listener) }
 
     if (observeValue)
         reference.addValueEventListener(listener)
@@ -159,7 +159,7 @@ private suspend fun <T : Any> readReferences(
         }
     }
 
-    continuation.invokeOnCompletion { reference.removeEventListener(listener) }
+//    continuation.invokeOnCompletion { reference.removeEventListener(listener) }
 
     reference.addListenerForSingleValueEvent(listener)
 }
@@ -226,7 +226,7 @@ private suspend fun <T : Any> awaitQuerySingleValue(query: Query, type: Class<T>
         }
 
         query.addListenerForSingleValueEvent(listener)
-        continuation.invokeOnCompletion { query.removeEventListener(listener) }
+//        continuation.invokeOnCompletion { query.removeEventListener(listener) }
     }
 
 suspend fun <T : Any> Query.readValue(type: Class<T>): Pair<String, T> = awaitQuerySingleValue(this, type)
@@ -251,7 +251,7 @@ private suspend fun <T : Any> awaitQueryListValue(query: Query, type: Class<T>):
         }
 
         query.addListenerForSingleValueEvent(listener)
-        continuation.invokeOnCompletion { query.removeEventListener(listener) }
+//        continuation.invokeOnCompletion { query.removeEventListener(listener) }
     }
 
 suspend fun <T : Any> Query.readList(type: Class<T>): ArrayList<Pair<String, T>> = awaitQueryListValue(this, type)

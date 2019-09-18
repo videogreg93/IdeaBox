@@ -6,7 +6,6 @@ import com.gregory.ideabox.managers.IBManager
 import com.gregory.ideabox.models.Idea
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.android.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
